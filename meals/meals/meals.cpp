@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <tuple>
 
 using namespace std;
 
@@ -60,6 +61,7 @@ double meal()
 
     int dep=0, arrival;
     double breakfast=0, lunch=0, dinner=0;
+    bool breT, lunT, dinT;
     arrival = departTimeM();
     dep = arrival / 10000;
     arrival = (arrival - (dep * 10000));
@@ -82,34 +84,31 @@ double meal()
     } while (dinner < 0);
     if (dep < 700)
     {
+        breT = breakfast;
         if (breakfast - 9 < 0)
         {
-            breakfast = 9;
+            breT = 9;
         }
-        breakfast -= 9;
     }
     if (arrival >100)
     {
+        lunT = lunch;
         if (lunch - 12 < 0)
         {
-            lunch = 12;
+            lunT = 12;
         }
-        lunch -= 12;
     }
     if (arrival >700)
     {
+        dinT = 16;
         if (dinner -16 < 0)
         {
-            dinner = 16;
+            dinT = 16;
         }
-        dinner -= 16;
+        
     }
 
-
-    return breakfast+ lunch+ dinner;
-
-
-
+    return breT, lunT, dinT, breakfast, lunch, dinner;
 
 }
 
@@ -117,7 +116,7 @@ double meal()
 
 double carRentals()
 {
-    int days = totalDays();
+    int
     double distance, mile, parking, taxi, paral, taxal;
     paral = days * 6, taxal = days * 10;
     do {
